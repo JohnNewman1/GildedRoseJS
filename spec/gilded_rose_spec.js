@@ -8,12 +8,12 @@ describe("Gilded Rose", function() {
 
   describe('updateQuality for normalItem', function(){
 
-    it("should decrease the quality by 1 ", function() {
+    it("Decrease the quality by 1 ", function() {
       gildedRose.updateQuality();
       expect(gildedRose.items[0].quality).toEqual(19);
     });
 
-    it("should decrease the sellIn by 1 ", function() {
+    it("Decrease the sellIn by 1 ", function() {
       gildedRose.updateQuality();
       expect(gildedRose.items[0].sellIn).toEqual(1);
     });
@@ -21,17 +21,17 @@ describe("Gilded Rose", function() {
 
   describe('updateQuality for Aged brie', function(){
 
-    it("should increase the quality by 1", function() {
+    it("Increase the quality by 1", function() {
       gildedRose.updateQuality();
       expect(gildedRose.items[1].quality).toEqual(1);
     });
 
-    it("should decrease the sellIn by 1 ", function() {
+    it("Decrease the sellIn by 1 ", function() {
       gildedRose.updateQuality();
       expect(gildedRose.items[1].sellIn).toEqual(0)
     });
 
-    it("should increase the quality by 2 when seelIn is 0", function() {
+    it("Increase the quality by 2 when seelIn is 0", function() {
       gildedRose.updateQuality();
       gildedRose.updateQuality();
       expect(gildedRose.items[1].quality).toEqual(3)
@@ -48,19 +48,19 @@ describe("Gilded Rose", function() {
       gildedRoseTwo.updateQuality();
 
     })
-    it("should increase the quality by 1 when sellIn is above 10 ", function(){
+    it("Increase the quality by 1 when sellIn is above 10 ", function(){
       expect(ticketTwo.quality).toEqual(11);
     });
 
-    it("should increase the quality by 2 when sellIn is between 5 and 10 ", function(){
+    it("Increase the quality by 2 when sellIn is between 5 and 10 ", function(){
       expect(ticketThree.quality).toEqual(6);
     });
 
-    it("should increase the quality by 3 when sellIn is between 1 and 5 ", function(){
+    it("Increase the quality by 3 when sellIn is between 1 and 5 ", function(){
       expect(ticketFour.quality).toEqual(7);
     });
 
-    it("should make the quantity 0 when sellIn is 0 ", function(){
+    it("Make the quantity 0 when sellIn is 0 ", function(){
       expect(ticketOne.quality).toEqual(0);
     });
   });
@@ -73,12 +73,31 @@ describe("Gilded Rose", function() {
       gildedRoseThree.updateQuality();
     });
 
-    it("should keep the quality at 80 ", function(){
+    it("Keep the quality at 80 ", function(){
       expect(sulfurasOne.quality).toEqual(80)
     });
 
-    it("should keep the Sulfuras sellIn the same", function(){
+    it("Keep the Sulfuras sellIn the same", function(){
       expect(sulfurasOne.sellIn).toEqual(2)
+    });
+  });
+
+  describe("Edge Cases", function(){
+
+    beforeEach(function(){
+      normalItem = new Item("Cucumber Crown", 0, 40);
+      agedBrieFifty = new Item("Aged Brie", 5, 49);
+      gildedRoseFour = new Shop([normalItem, agedBrieFifty]);
+      gildedRoseFour.updateQuality();
+    });
+    it("Quality decreases by 2 when below 0 ", function(){
+      expect(normalItem.quality).toEqual(38)
+    });
+
+    it("items will not go above 50 quality", function(){
+      expect(agedBrieFifty.quality).toEqual(50);
+      gildedRoseFour.updateQuality();
+      expect(agedBrieFifty.quality).toEqual(50);
     });
   });
 });
