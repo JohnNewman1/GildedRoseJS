@@ -23,6 +23,7 @@ describe("Gilded Rose", function() {
 
     it("Increase the quality by 1", function() {
       gildedRose.updateQuality();
+      console.log(gildedRose.items[1])
       expect(gildedRose.items[1].quality).toEqual(1);
     });
 
