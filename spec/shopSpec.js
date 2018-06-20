@@ -3,6 +3,7 @@ describe("Shop", function(){
   beforeEach(function(){
     shop = new Shop();
     item = jasmine.createSpy("item");
+    sulfuras = jasmine.createSpy("Sulfuras");
   });
 
   describe("#add", function(){
@@ -15,6 +16,7 @@ describe("Shop", function(){
   describe("updateQuality", function(){
 
     describe("NormalItems", function(){
+
       beforeEach(function(){
         shop.add(item);
         item.name = "normalItem";
@@ -42,6 +44,35 @@ describe("Shop", function(){
         shop.updateQuality();
         expect(item.quality).toEqual(0);
       });
+    });
+
+    describe("Sulfuras", function(){
+
+      beforeEach(function(){
+        shop.add(sulfuras);
+        sulfuras.name = "Sulfuras, Hand of Ragnaros";
+        sulfuras.sellIn = 0;
+        sulfuras.quality = 80;
+      });
+
+      it("reduces sellIn by 0", function(){
+        shop.updateQuality();
+        expect(sulfuras.sellIn).toEqual(0);
+      })
+
+      it("reduces quality by 0", function(){
+        shop.updateQuality();
+        expect(sulfuras.quality).toEqual(80);
+      });
+
+      it("reduces quality by 0 when sellIn below zero", function(){
+        sulfuras.sellIn = -2;
+        shop.updateQuality();
+        expect(item.quality).toEqual(80);
+      });
+
+    });
+
     });
   });
 });
