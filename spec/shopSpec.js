@@ -33,9 +33,14 @@ describe("Shop", function(){
       });
 
       it("reduces quality by 2 when sellIn below zero", function(){
+        item.sellIn = 0;
         shop.updateQuality();
+        expect(item.quality).toEqual(18);
+      });
+      it(" quality will not go below zero", function(){
+        item.quality = 0;
         shop.updateQuality();
-        expect(item.quality).toEqual(17);
+        expect(item.quality).toEqual(0);
       });
     });
   });

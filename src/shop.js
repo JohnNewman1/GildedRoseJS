@@ -10,13 +10,13 @@ class Shop {
  updateQuality(){
    this.items.forEach(function(item){
      var n = -1
-     if (this._ifbelowZero(item)) { item.quality += n}
+     if (this._ifSellInbelowZero(item)) { item.quality += n}
      item.sellIn --
      item.quality += n
    }.bind(this));
  }
 
- _ifbelowZero(item){
+ _ifSellInbelowZero(item){
    return (item.sellIn <= 0)
  }
 }
