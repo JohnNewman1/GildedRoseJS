@@ -1,8 +1,8 @@
-xdescribe('Shop', function(){
+describe('Shop', function(){
   var shop;
   beforeEach(function(){
     shop = new Shop();
-    item = jasmine.createSpyObj('item');
+    item = jasmine.createSpy("item");
   });
 
   describe('#add', function(){

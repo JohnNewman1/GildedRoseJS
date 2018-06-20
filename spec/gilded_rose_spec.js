@@ -1,4 +1,4 @@
-describe("Gilded Rose", function() {
+xdescribe("Gilded Rose", function() {
 
   beforeEach(function(){
     normalItem = new Item("normalItem", 2, 20);

@@ -1,4 +1,4 @@
-xdescribe('Item', function(){
+describe('Item', function(){
   var item;
   beforeEach(function(){
     item = new Item("Banana Pie", 4, 3);
