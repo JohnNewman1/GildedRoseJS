@@ -38,4 +38,5 @@ class Shop {
   _ifQualityAboveFifty(item){
     if (this._ifBrie(item)) { return (item.quality >= 50) }
   }
+  
 }
