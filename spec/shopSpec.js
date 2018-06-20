@@ -18,19 +18,25 @@ describe("Shop", function(){
       beforeEach(function(){
         shop.add(item);
         item.name = "normalItem";
-        item.sellIn = 2;
+        item.sellIn = 1;
         item.quality = 20;
       });
 
       it("reduces sellIn by 1", function(){
         shop.updateQuality();
-        expect(item.sellIn).toEqual(1);
+        expect(item.sellIn).toEqual(0);
       })
 
       it("reduces quality by 1", function(){
         shop.updateQuality();
         expect(item.quality).toEqual(19);
-      })
+      });
+
+      it("reduces quality by 2 when sellIn below zero", function(){
+        shop.updateQuality();
+        shop.updateQuality();
+        expect(item.quality).toEqual(17);
+      });
     });
   });
 });
