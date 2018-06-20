@@ -4,6 +4,7 @@ describe("Shop", function(){
     shop = new Shop();
     normalItem = {name: "normalItem", sellIn: 1, quality: 20 }
     sulfuras = {name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 }
+    agedBrie = {name: "Aged Brie", sellIn: 2, quality: 5}
   });
 
   describe("#add", function(){
@@ -36,6 +37,7 @@ describe("Shop", function(){
         shop.updateQuality();
         expect(normalItem.quality).toEqual(18);
       });
+
       it(" quality will not go below zero", function(){
         normalItem.quality = 0;
         shop.updateQuality();
@@ -44,9 +46,9 @@ describe("Shop", function(){
     });
 
     describe("Sulfuras", function(){
+
       beforeEach(function(){
         shop.add(sulfuras);
-        console.log(sulfuras.name);
       });
 
       it("reduces sellIn by 0", function(){
@@ -64,6 +66,35 @@ describe("Shop", function(){
         sulfuras.sellIn = -2;
         shop.updateQuality();
         expect(sulfuras.quality).toEqual(80);
+      });
+    });
+
+    describe("Aged Brie", function(){
+
+      beforeEach(function(){
+        shop.add(agedBrie);
+      });
+
+      it("reduces sellIn by 1", function(){
+        shop.updateQuality();
+        expect(agedBrie.sellIn).toEqual(1);
+      })
+
+      it("increases quality by 1", function(){
+        shop.updateQuality();
+        expect(agedBrie.quality).toEqual(6);
+      });
+
+      it("increases quality by 2 when sellIn below zero", function(){
+        agedBrie.sellIn = 0;
+        shop.updateQuality();
+        expect(agedBrie.quality).toEqual(7);
+      });
+
+      it(" quality will not go above 50", function(){
+        agedBrie.quality = 50;
+        shop.updateQuality();
+        expect(agedBrie.quality).toEqual(50);
       });
     });
   });
