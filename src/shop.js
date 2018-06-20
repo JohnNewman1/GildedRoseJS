@@ -1,6 +1,6 @@
 class Shop {
-  constructor(){
-    this.items = [];
+  constructor(items=[]){
+    this.items = items;
   }
 
   add(item) {
@@ -11,6 +11,10 @@ class Shop {
     this.items.forEach(function(item){
       var delta;
       if (this._ifSulfurus(item)) { return; }
+      if (this._ifTicket(item)) {
+          this._ticketUpdate(item);
+          return;
+        }
       this._ifBrie(item) ? delta = 1 : delta = -1;
       if (this._ifSellInBelowZero(item)) { item.quality += delta; }
       this._ifQualityBelowZero(item) ? item.quality = 0 : item.quality += delta;
@@ -19,9 +23,20 @@ class Shop {
     }.bind(this));
   }
 
-   _ifSellInBelowZero(item){
-     return (item.sellIn <= 0)
-   }
+  _ticketUpdate(item) {
+    if (this._ifSellInBelowZero(item)) { item.quality = 0}
+    else if (item.sellIn < 6) {item.quality += 3}
+    else if (item.sellIn < 11 ) {item.quality += 2}
+    else {
+      item.quality += 1;
+      if (this._ifQualityAboveFifty(item)) {item.quality = 50}
+    }
+    item.sellIn --;
+  }
+
+  _ifTicket(item){
+    return (item.name == "Backstage passes to a TAFKAL80ETC concert")
+  }
 
   _ifBrie(item){
     return (item.name == "Aged Brie")
@@ -31,12 +46,15 @@ class Shop {
      return (item.name == "Sulfuras, Hand of Ragnaros")
    }
 
+   _ifSellInBelowZero(item){
+     return (item.sellIn <= 0)
+   }
+
    _ifQualityBelowZero(item){
      return (item.quality <= 0)
    }
 
   _ifQualityAboveFifty(item){
-    if (this._ifBrie(item)) { return (item.quality >= 50) }
+    if (this._ifBrie(item) || this._ifTicket(item)) { return (item.quality >= 50) }
   }
-  
 }
