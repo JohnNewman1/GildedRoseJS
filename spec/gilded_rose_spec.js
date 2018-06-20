@@ -87,7 +87,8 @@ describe("Gilded Rose", function() {
     beforeEach(function(){
       normalItem = new Item("Cucumber Crown", 0, 40);
       agedBrieFifty = new Item("Aged Brie", 5, 49);
-      gildedRoseFour = new Shop([normalItem, agedBrieFifty]);
+      itemQualityZero = new Item("Robot Chicken", 2, 0)
+      gildedRoseFour = new Shop([normalItem, agedBrieFifty, itemQualityZero]);
       gildedRoseFour.updateQuality();
     });
     it("Quality decreases by 2 when below 0 ", function(){
@@ -98,6 +99,10 @@ describe("Gilded Rose", function() {
       expect(agedBrieFifty.quality).toEqual(50);
       gildedRoseFour.updateQuality();
       expect(agedBrieFifty.quality).toEqual(50);
+    });
+
+    it("items will not go below 0 quality", function(){
+      expect(itemQualityZero.quality).toEqual(0);
     });
   });
 });
