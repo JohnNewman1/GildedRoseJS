@@ -55,5 +55,9 @@ describe("Gilded Rose", function() {
     it("should increase the quality by 2 when sellIn is between 5 and 10 ", function(){
       expect(ticketThree.quality).toEqual(6);
     });
+
+    it("should increase the quality by 3 when sellIn is between 1 and 5 ", function(){
+      expect(ticketFour.quality).toEqual(7);
+    });
   });
 });
