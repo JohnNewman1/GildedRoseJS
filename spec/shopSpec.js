@@ -2,10 +2,11 @@ describe("Shop", function(){
   var shop;
   beforeEach(function(){
     shop = new Shop();
-    normalItem = {name: "normalItem", sellIn: 1, quality: 20 }
-    sulfuras = {name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 }
-    agedBrie = {name: "Aged Brie", sellIn: 2, quality: 5}
-    ticket = {name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 30 }
+    normalItem = { name: "normalItem", sellIn: 1, quality: 20 }
+    sulfuras = { name: "Sulfuras, Hand of Ragnaros", sellIn: 0, quality: 80 }
+    agedBrie = { name: "Aged Brie", sellIn: 2, quality: 5 }
+    ticket = { name: "Backstage passes to a TAFKAL80ETC concert", sellIn: 11, quality: 30 }
+    conjured = { name: "Conjured Mana Cake", sellIn: 4, quality: 20 }
   });
 
   describe("#add", function(){
@@ -53,7 +54,6 @@ describe("Shop", function(){
       });
 
       it("reduces sellIn by 0", function(){
-        console.log(shop._ifSulfurus(sulfuras))
         shop.updateQuality();
         expect(sulfuras.sellIn).toEqual(0);
       })
@@ -137,6 +137,34 @@ describe("Shop", function(){
         ticket.quality = 50;
         shop.updateQuality();
         expect(ticket.quality).toEqual(50);
+      });
+    });
+
+    describe("Conjured", function(){
+
+      beforeEach(function(){
+        shop.add(conjured);
+      });
+      it("Reduces sellIn by 1 ", function(){
+        shop.updateQuality();
+        expect(conjured.sellIn).toEqual(3);
+      });
+
+      it("Reduces by 2 when sellIn is above 0", function(){
+        shop.updateQuality();
+        expect(conjured.quality).toEqual(18);
+      });
+
+      it("Reduces by 4 when sellIn is below 0", function(){
+        conjured.sellIn = -2;
+        shop.updateQuality();
+        expect(conjured.quality).toEqual(16);
+      });
+
+      it("Quality can not go below 0", function(){
+        conjured.quality = 0;
+        shop.updateQuality();
+        expect(conjured.quality).toEqual(0);
       });
     });
   });
