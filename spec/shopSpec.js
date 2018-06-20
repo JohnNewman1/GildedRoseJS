@@ -24,7 +24,12 @@ describe("Shop", function(){
 
       it("reduces sellIn by 1", function(){
         shop.updateQuality();
-        expect(item.sellIn).toEqual(1)
+        expect(item.sellIn).toEqual(1);
+      })
+
+      it("reduces quality by 1", function(){
+        shop.updateQuality();
+        expect(item.quality).toEqual(19);
       })
     });
   });
