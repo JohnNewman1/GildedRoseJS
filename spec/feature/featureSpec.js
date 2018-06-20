@@ -1,7 +1,7 @@
 describe("Gilded Rose", function() {
 
-  var Item = require('../src/item');
-  var Shop = require('../src/shop');
+  var Item = require('../../src/item');
+  var Shop = require('../../src/shop');
 
   beforeEach(function(){
     normalItem = new Item("normalItem", 2, 20);

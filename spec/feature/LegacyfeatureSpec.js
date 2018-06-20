@@ -1,6 +1,6 @@
 describe("Gilded Rose", function() {
 
-  var Rose = require('../src/gilded_rose');
+  var Rose = require('../../src/gilded_rose');
 
   beforeEach(function(){
     normalItem = new Rose.Item("normalItem", 2, 20);
