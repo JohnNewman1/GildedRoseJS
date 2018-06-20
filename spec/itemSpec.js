@@ -6,7 +6,7 @@ describe('Item', function(){
 
   it('initialises with the correct properties', function(){
     expect(item.name).toEqual("Banana Pie");
-    expect(item.SellIn).toEqual(4);
+    expect(item.sellIn).toEqual(4);
     expect(item.quality).toEqual(3);
   });
 });
