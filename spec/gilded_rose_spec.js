@@ -64,4 +64,19 @@ describe("Gilded Rose", function() {
       expect(ticketOne.quality).toEqual(0);
     });
   });
+
+  describe("updateQuality for Sulfuras", function(){
+
+    beforeEach(function(){
+      sulfurasOne = new Item("Sulfuras, Hand of Ragnaros", 2, 80);
+      sulfurasTwo = new Item("Sulfuras, Hand of Ragnaros", 0, 5);
+      gildedRoseThree = new Shop([sulfurasOne, sulfurasTwo]);
+      gildedRoseThree.updateQuality();
+    });
+
+    it("should keep the quality at 80 ", function(){
+      expect(sulfurasOne.quality).toEqual(80)
+
+    });
+  });
 });
