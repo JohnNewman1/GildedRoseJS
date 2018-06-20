@@ -6,4 +6,10 @@ class Shop {
   add(item) {
    this.items.push(item);
  }
+
+ updateQuality(){
+   this.items.forEach(function(item){
+     item.sellIn --
+   });
+ }
 }
