@@ -9,18 +9,25 @@ class Shop {
 
   updateQuality(){
     this.items.forEach(function(item){
-      var delta;
+
       if (this._ifSulfurus(item)) { return; }
       if (this._ifTicket(item)) {
           this._ticketUpdate(item);
           return;
         }
-      this._ifBrie(item) ? delta = 1 : delta = -1;
-      if (this._ifSellInBelowZero(item)) { item.quality += delta; }
-      this._ifQualityBelowZero(item) ? item.quality = 0 : item.quality += delta;
-      if (this._ifQualityAboveFifty(item)) { item.quality = 50; }
-      item.sellIn --;
+      this._standardUpdate(item);
     }.bind(this));
+  }
+
+  _standardUpdate(item){
+    var delta;
+    this._ifBrie(item) ? delta = 1 : delta = -1;
+    if (this._ifConjured(item)) { delta = -2 };
+    if (this._ifSellInBelowZero(item)) { item.quality += delta; }
+    item.quality += delta;
+    if (this._ifQualityBelowZero(item)) { item.quality = 0 }
+    if (this._ifQualityAboveFifty(item)) { item.quality = 50; }
+    item.sellIn --;
   }
 
   _ticketUpdate(item) {
@@ -46,6 +53,10 @@ class Shop {
      return (item.name == "Sulfuras, Hand of Ragnaros")
    }
 
+   _ifConjured(item){
+     return (item.name == "Conjured Mana Cake")
+   }
+
    _ifSellInBelowZero(item){
      return (item.sellIn <= 0)
    }
@@ -57,4 +68,5 @@ class Shop {
   _ifQualityAboveFifty(item){
     if (this._ifBrie(item) || this._ifTicket(item)) { return (item.quality >= 50) }
   }
+
 }
