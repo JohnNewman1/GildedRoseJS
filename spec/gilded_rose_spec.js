@@ -69,14 +69,16 @@ describe("Gilded Rose", function() {
 
     beforeEach(function(){
       sulfurasOne = new Item("Sulfuras, Hand of Ragnaros", 2, 80);
-      sulfurasTwo = new Item("Sulfuras, Hand of Ragnaros", 0, 5);
-      gildedRoseThree = new Shop([sulfurasOne, sulfurasTwo]);
+      gildedRoseThree = new Shop([sulfurasOne]);
       gildedRoseThree.updateQuality();
     });
 
     it("should keep the quality at 80 ", function(){
       expect(sulfurasOne.quality).toEqual(80)
+    });
 
+    it("should keep the Sulfuras sellIn the same", function(){
+      expect(sulfurasOne.sellIn).toEqual(2)
     });
   });
 });
