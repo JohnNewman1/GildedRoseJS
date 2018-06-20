@@ -40,7 +40,7 @@ describe("Gilded Rose", function() {
 
   describe("updateQuality for Ticket", function(){
     beforeEach(function(){
-      ticketOne = new Item("Backstage passes to a TAFKAL80ETC concert", 1, 40)
+      ticketOne = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 40)
       ticketTwo = new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10)
       ticketThree = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 4)
       ticketFour = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 4)
@@ -58,6 +58,10 @@ describe("Gilded Rose", function() {
 
     it("should increase the quality by 3 when sellIn is between 1 and 5 ", function(){
       expect(ticketFour.quality).toEqual(7);
+    });
+
+    it("should make the quantity 0 when sellIn is 0 ", function(){
+      expect(ticketOne.quality).toEqual(0);
     });
   });
 });
