@@ -43,13 +43,17 @@ describe("Gilded Rose", function() {
       ticketOne = new Item("Backstage passes to a TAFKAL80ETC concert", 1, 40)
       ticketTwo = new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10)
       ticketThree = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 4)
-      ticketFour = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 4)
+      ticketFour = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 4)
       gildedRoseTwo = new Shop([ticketOne, ticketTwo, ticketThree, ticketFour]);
       gildedRoseTwo.updateQuality();
 
     })
     it("should increase the quality by 1 when sellIn is above 10 ", function(){
       expect(ticketTwo.quality).toEqual(11);
+    });
+
+    it("should increase the quality by 2 when sellIn is between 5 and 10 ", function(){
+      expect(ticketThree.quality).toEqual(6);
     });
   });
 });
