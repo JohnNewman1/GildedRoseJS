@@ -122,5 +122,10 @@ describe("Gilded Rose", function() {
     it("Reduces conjured items by 4 when sellIn is below 0", function(){
       expect(conjuredOne.quality).toEqual(36);
     });
+
+    it("Quality can not go below 0", function(){
+      gildedRoseFive.updateQuality();
+      expect(conjuredTwo.quality).toEqual(0);
+    });
   });
 });
