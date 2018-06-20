@@ -1,4 +1,5 @@
 describe("Shop", function(){
+  var Shop = require('../src/shop')
   var shop;
   beforeEach(function(){
     shop = new Shop();
