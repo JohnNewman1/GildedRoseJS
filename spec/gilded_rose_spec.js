@@ -1,16 +1,10 @@
 describe("Gilded Rose", function() {
-  var gildedRose;
-  var normalItem;
-  var agedBrie;
+
   beforeEach(function(){
     normalItem = new Item("normalItem", 2, 20);
     agedBrie = new Item("Aged Brie", 1, 0);
     gildedRose = new Shop([normalItem, agedBrie]);
   })
-
-  it("foo should be first item in array", function() {
-    expect(gildedRose.items[0]).toEqual(normalItem);
-  });
 
   describe('updateQuality for normalItem', function(){
 
@@ -37,10 +31,25 @@ describe("Gilded Rose", function() {
       expect(gildedRose.items[1].sellIn).toEqual(0)
     });
 
-    it("should increase the sellIn by 2 when seelIn is 0", function() {
+    it("should increase the quality by 2 when seelIn is 0", function() {
       gildedRose.updateQuality();
       gildedRose.updateQuality();
       expect(gildedRose.items[1].quality).toEqual(3)
+    });
+  });
+
+  describe("updateQuality for Ticket", function(){
+    beforeEach(function(){
+      ticketOne = new Item("Backstage passes to a TAFKAL80ETC concert", 1, 40)
+      ticketTwo = new Item("Backstage passes to a TAFKAL80ETC concert", 12, 10)
+      ticketThree = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 4)
+      ticketFour = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 4)
+      gildedRoseTwo = new Shop([ticketOne, ticketTwo, ticketThree, ticketFour]);
+      gildedRoseTwo.updateQuality();
+
+    })
+    it("should increase the quality by 1 when sellIn is above 10 ", function(){
+      expect(ticketTwo.quality).toEqual(11);
     });
   });
 });
