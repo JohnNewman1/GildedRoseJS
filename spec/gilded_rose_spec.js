@@ -92,10 +92,10 @@ describe("Gilded Rose", function() {
       gildedRoseFour.updateQuality();
     });
     it("Quality decreases by 2 when below 0 ", function(){
-      expect(normalItem.quality).toEqual(38)
+      expect(normalItem.quality).toEqual(38);
     });
 
-    it("items will not go above 50 quality", function(){
+    it("Items will not go above 50 quality", function(){
       expect(agedBrieFifty.quality).toEqual(50);
       gildedRoseFour.updateQuality();
       expect(agedBrieFifty.quality).toEqual(50);
@@ -103,6 +103,24 @@ describe("Gilded Rose", function() {
 
     it("items will not go below 0 quality", function(){
       expect(itemQualityZero.quality).toEqual(0);
+    });
+  });
+
+  describe("Conjured", function(){
+
+    beforeEach(function(){
+      conjuredOne = new Item("Conjured Mana Cake", 0, 40);
+      conjuredTwo= new Item("Conjured Mana Cake", 5, 2);
+      gildedRoseFive = new Shop([conjuredOne, conjuredTwo]);
+      gildedRoseFive.updateQuality();
+    });
+
+    it("Reduces conjured items by 2 when sellIn is above 0", function(){
+      expect(conjuredTwo.quality).toEqual(0);
+    });
+
+    it("Reduces conjured items by 4 when sellIn is below 0", function(){
+      expect(conjuredOne.quality).toEqual(36);
     });
   });
 });
