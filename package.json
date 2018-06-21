@@ -18,8 +18,5 @@
     "jasmine-node": "^1.14.6",
     "jasmine-supertest": "^1.0.0",
     "supertest": "^3.1.0"
-  },
-  "dependencies": {
-    "linter": "0.0.7"
   }
 }
