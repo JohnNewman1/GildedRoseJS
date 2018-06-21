@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "jasmine",
-    "test-cover": "istanbul cover --include-all-sources spec/specs.js -x **/lib/** && istanbul check-coverage"
+    "test-cover": "istanbul cover --include-all-sources spec/specs.js -x **/lib/** && istanbul check-coverage",
   },
   "author": "John",
   "license": "ISC",
@@ -19,5 +19,7 @@
     "jasmine-supertest": "^1.0.0",
     "supertest": "^3.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "linter": "0.0.7"
+  }
 }

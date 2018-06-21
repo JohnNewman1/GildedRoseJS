@@ -1,6 +1,8 @@
 describe("Shop", function(){
+
   var Shop = require('../../src/shop')
   var shop;
+
   beforeEach(function(){
     shop = new Shop();
     normalItem = { name: "normalItem", sellIn: 1, quality: 20 }
@@ -11,6 +13,7 @@ describe("Shop", function(){
   });
 
   describe("#add", function(){
+
     it("adds a new item to the item array", function(){
       shop.add(normalItem);
       expect(shop.items).toContain(normalItem)
@@ -77,41 +80,41 @@ describe("Shop", function(){
         shop.add(agedBrie);
       });
 
-      it("reduces sellIn by 1", function(){
+      it("Reduces sellIn by 1", function(){
         shop.updateQuality();
         expect(agedBrie.sellIn).toEqual(1);
       })
 
-      it("increases quality by 1", function(){
+      it("Increases quality by 1", function(){
         shop.updateQuality();
         expect(agedBrie.quality).toEqual(6);
       });
 
-      it("increases quality by 2 when sellIn below zero", function(){
+      it("Increases quality by 2 when sellIn below zero", function(){
         agedBrie.sellIn = 0;
         shop.updateQuality();
         expect(agedBrie.quality).toEqual(7);
       });
 
-      it(" quality will not go above 50", function(){
+      it("Quality will not go above 50", function(){
         agedBrie.quality = 50;
         shop.updateQuality();
         expect(agedBrie.quality).toEqual(50);
       });
     });
 
-    describe("ticket", function(){
+    describe("Ticket", function(){
 
       beforeEach(function(){
         shop.add(ticket);
       });
 
-      it("reduces sellIn by 1", function(){
+      it("Reduces sellIn by 1", function(){
         shop.updateQuality();
         expect(ticket.sellIn).toEqual(10);
       })
 
-      it("increases quality by 1 when sellIn is above 10", function(){
+      it("Increases quality by 1 when sellIn is above 10", function(){
         shop.updateQuality();
         expect(ticket.quality).toEqual(31);
       });
@@ -134,7 +137,7 @@ describe("Shop", function(){
         expect(ticket.quality).toEqual(0);
       });
 
-      it("quality will not go above 50", function(){
+      it("Quality will not go above 50", function(){
         ticket.quality = 50;
         shop.updateQuality();
         expect(ticket.quality).toEqual(50);

@@ -41,6 +41,7 @@ describe("Gilded Rose", function() {
   });
 
   describe("updateQuality for Ticket", function(){
+
     beforeEach(function(){
       ticketOne = new Rose.Item("Backstage passes to a TAFKAL80ETC concert", 0, 40)
       ticketTwo = new Rose.Item("Backstage passes to a TAFKAL80ETC concert", 12, 10)
@@ -50,6 +51,7 @@ describe("Gilded Rose", function() {
       gildedRoseTwo.updateQuality();
 
     })
+
     it("Increase the quality by 1 when sellIn is above 10 ", function(){
       expect(ticketTwo.quality).toEqual(11);
     });
@@ -93,6 +95,7 @@ describe("Gilded Rose", function() {
       gildedRoseFour = new Rose.Shop([normalItem, agedBrieFifty, itemQualityZero]);
       gildedRoseFour.updateQuality();
     });
+    
     it("Quality decreases by 2 when below 0 ", function(){
       expect(normalItem.quality).toEqual(38);
     });

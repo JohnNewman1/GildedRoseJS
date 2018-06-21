@@ -94,6 +94,7 @@ describe("Gilded Rose", function() {
       gildedRoseFour = new Shop([normalItem, agedBrieFifty, itemQualityZero]);
       gildedRoseFour.updateQuality();
     });
+    
     it("Quality decreases by 2 when below 0 ", function(){
       expect(normalItem.quality).toEqual(38);
     });
